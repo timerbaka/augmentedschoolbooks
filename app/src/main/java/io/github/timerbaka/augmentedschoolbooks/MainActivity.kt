@@ -1,13 +1,17 @@
 package io.github.timerbaka.augmentedschoolbooks
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
+import com.google.ar.core.AugmentedImageDatabase
+import com.google.ar.core.Config
 import io.github.sceneview.ar.ArSceneView
 import io.github.sceneview.ar.node.ArModelNode
 import io.github.sceneview.ar.node.PlacementMode
 import io.github.sceneview.math.Position
+import io.github.sceneview.utils.setFullScreen
 
 /**
  * Основной класс приложения, управляющий сценой ARCore и моделями.
@@ -65,8 +69,46 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // Установка нового узла модели выбранным по умолчанию
         sceneView.selectedNode = modelNode
     }
+    /**
+     * Метод жизненного цикла, вызываемый при создании активности.
+     * Настраивает полноэкранный режим, настраивает сцену ARCore, загружает модели и добавляет обработчики событий.
+     * @param savedInstanceState Сохраненное состояние активности.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        // Настройка полноэкранного режима
+        setFullScreen(
+            findViewById(R.id.rootView),
+            fullScreen = true,
+            hideSystemBars = false,
+            fitsSystemWindows = false
+        )
+
+        // Инициализация сцены ARCore
+        sceneView = findViewById(R.id.sceneView)
+        loadingView = findViewById(R.id.loadingView)
+        // Конфигурация сессии
+        sceneView.configureSession { arSession, config ->
+            // Создание базы данных дополненных изображений
+            val imgDb = AugmentedImageDatabase(arSession)
+            imgDb.addImage("spheres", BitmapFactory.decodeStream(assets.open("images/spheres.png")))
+            config.augmentedImageDatabase = imgDb
+            // Отключение глубины
+            config.depthMode = Config.DepthMode.DISABLED
+            arSession.configure(config)
+        }
+
+        // Обработчик события обновления списка обнаруженных дополненных изображений
+        var currentImage = ""
+        sceneView.onAugmentedImageUpdate = mutableListOf(
+            { augmentedImage ->
+                if (augmentedImage.name != currentImage) {
+                    // Создание нового узла модели на основе соответствующей модели в списке models
+                    models[augmentedImage.name]?.let { newModelNode(it) }
+                    currentImage = augmentedImage.name
+                }
+            }
+        )
     }
 }
