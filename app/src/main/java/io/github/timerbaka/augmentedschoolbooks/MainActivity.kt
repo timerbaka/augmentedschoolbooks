@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             it.destroy()
         }
         // Создание нового узла модели на основе переданной модели
-        modelNode = ArModelNode(model.placementMode).apply {
+        modelNode = AnimatedModelNode(model.placementMode).apply {
             applyPoseRotation = model.applyPoseRotation
             loadModelGlbAsync(
                 context = this@MainActivity,
