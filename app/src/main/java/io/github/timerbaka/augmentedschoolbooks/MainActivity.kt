@@ -16,7 +16,7 @@ import io.github.sceneview.utils.setFullScreen
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     // Карта ключей-значений, содержащая 3D-модели
     private val models: Map<String, Model> = mapOf(
-        "spheres" to Model("models/spheres.glb", scaleUnits = 0.5f, placementMode = PlacementMode.INSTANT),
+        "gravity_law" to Model("models/gravity_law.glb", scaleUnits = 0.5f, placementMode = PlacementMode.INSTANT),
     )
     // Объявление переменных для хранения View
     private lateinit var sceneView: ArSceneView
