@@ -43,3 +43,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+// Задача для генерации модели
+tasks.register("runBlenderScript", Exec){
+    commandLine 'blender',  '-b',  '-P', "${projectDir}/../contrib/blender/gravity_law.py"
+}
+
+// генерация модели перед сборкой
+preBuild.dependsOn(runBlenderScript)
