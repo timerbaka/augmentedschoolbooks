@@ -8,6 +8,7 @@ import com.google.ar.core.AugmentedImageDatabase
 import com.google.ar.core.Config
 import io.github.sceneview.ar.ArSceneView
 import io.github.sceneview.ar.node.PlacementMode
+import io.github.sceneview.math.Rotation
 import io.github.sceneview.utils.setFullScreen
 
 /**
@@ -16,7 +17,7 @@ import io.github.sceneview.utils.setFullScreen
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     // Карта ключей-значений, содержащая 3D-модели
     private val models: Map<String, Model> = mapOf(
-        "gravity_law" to Model("models/gravity_law.glb", scaleUnits = 0.5f, placementMode = PlacementMode.INSTANT),
+        "gravity_law" to Model("models/gravity_law.glb", scaleUnits = 0.5f, rotation = Rotation(0f,270f,0f), placementMode = PlacementMode.INSTANT),
     )
     // Объявление переменных для хранения View
     private lateinit var sceneView: ArSceneView

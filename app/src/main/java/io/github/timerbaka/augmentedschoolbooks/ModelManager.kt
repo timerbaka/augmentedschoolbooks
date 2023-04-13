@@ -45,6 +45,7 @@ class ModelManager(private val activity: AppCompatActivity, private val sceneVie
     private fun createNewModelNode(model: Model): AnimatedModelNode {
         return AnimatedModelNode(model.placementMode).apply {
             applyPoseRotation = model.applyPoseRotation
+            modelRotation = model.rotation
             // Асинхронная загрузка модели GLB
             loadModelGlbAsync(
                 glbFileLocation = model.fileLocation,
