@@ -47,7 +47,6 @@ class ModelManager(private val activity: AppCompatActivity, private val sceneVie
             applyPoseRotation = model.applyPoseRotation
             // Асинхронная загрузка модели GLB
             loadModelGlbAsync(
-                context = activity,
                 glbFileLocation = model.fileLocation,
                 autoAnimate = true,
                 scaleToUnits = model.scaleUnits,
