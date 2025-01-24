@@ -1,39 +1,43 @@
 # БуквARик
 ![logo_with_text.png](contrib/img/logo_with_text.png)
 
-БуквARик - это пример приложения, демонстрирующего возможности дополненной реальности (AR) в Android. Приложение позволяет загружать и отображать трехмерные модели в AR с использованием физических объектов в качестве маркеров.
+BukvARik is a sample application demonstrating the capabilities of augmented reality (AR) on Android. The app allows loading and displaying 3D models in AR using physical objects as markers.
 
-## Требования к устройству
-Для запуска приложения требуется устройство с операционной системой Android версии 7.0 и выше, поддерживающее ARCore. Для проверки поддержки ARCore на вашем устройстве, вы можете посетить [страницу поддерживаемых устройств ARCore](https://developers.google.com/ar/discover/supported-devices).
+## Device Requirements
+The application requires a device running Android 7.0 or higher with ARCore support. To check if your device supports ARCore, visit the [ARCore supported devices page](https://developers.google.com/ar/discover/supported-devices).
 
-## Используемые библиотеки и инструменты
-Приложение использует следующие библиотеки и инструменты:
+## Libraries and Tools Used
+The application utilizes the following libraries and tools:
 
-- [SceneView](https://sceneview.github.io/) - библиотека для работы с трехмерными сценами в Android.
-- [ARCore](https://developers.google.com/ar) - платформа расширенной реальности для Android, разработанная Google.
-- [Material Design Components](https://m3.material.io/components) - библиотека компонентов пользовательского интерфейса в стиле Material Design от Google.
+- [SceneView](https://sceneview.github.io/) - A library for working with 3D scenes on Android.
+- [ARCore](https://developers.google.com/ar) - Google's augmented reality platform for Android.
+- [Material Design Components](https://m3.material.io/components) - A UI component library following Google's Material Design guidelines.
 
-## Установка и запуск приложения
-- Склонируйте репозиторий на свой локальный компьютер.
+## Installation and Running the Application
+- Clone the repository to your local machine:
     ```bash
     git clone https://github.com/timerbaka/augmentedschoolbooks.git
     ```
-- Откройте проект в Android Studio или Intellij IDEA.
-- Подключите устройство Android к компьютеру и убедитесь, что разрешена отладка по USB.
-- Запустите проект на устройстве, используя кнопку "Run" в IDE.
+- Open the project in Android Studio or IntelliJ IDEA.
+- Connect your Android device to the computer and ensure USB debugging is enabled.
+- Run the project on your device using the "Run" button in the IDE.
 
-## Использование приложения
-После запуска приложения необходимо разрешить доступ к камере устройства, чтобы приложение могло использовать ее для работы с AR.
-После того, как ARCore и SceneView инициализируются, экран будет переключен на вид с камеры устройства. Приложение автоматически ищет картинки дополненной реальности с шаблоном из папки images и отображает на них 3D-модели.
+## How to Use the Application
+After launching the application, grant camera access so the app can use it for AR functionality.  
+Once ARCore and SceneView are initialized, the screen will switch to the device's camera view. The app automatically scans for augmented reality images with templates from the `images` folder and displays corresponding 3D models.
 
-Приложение может работать с другими картинками дополненной реальности, которые находятся в формате PNG в папке images. Для этого необходимо добавить новую картинку в папку images, а также соответствующую модель 3D-объекта в [формате GLB](https://en.wikipedia.org/wiki/GlTF) в папку models. Новую картинку нужно добавить в базу данных AugmentedImageDatabase, используя ее имя как ключ. Затем нужно указать новую модель в списке models в файле MainActivity.kt, указав имя ключа как первый аргумент.
+The application can also work with custom augmented reality images in PNG format located in the `images` folder. To use a custom image:
+1. Add the new image to the `images` folder.
+2. Add a corresponding 3D model in [GLB format](https://en.wikipedia.org/wiki/GlTF) to the `models` folder.
+3. Add the new image to the AugmentedImageDatabase, using its name as the key.
+4. Specify the new model in the `models` list within `MainActivity.kt`, using the key name as the first argument.
 
-Приложение поддерживает автоматическую анимацию модели, а также управление ее поворотом и масштабированием.
+The application supports automatic model animations as well as manual control for rotating and scaling the model.
 
-После выбора маркера начнется процесс загрузки модели, который может занять некоторое время. После загрузки модель будет размещена на месте маркера в AR. Пользователь может взаимодействовать с моделью, перемещая и вращая ее в пространстве с помощью жестов.
+After selecting a marker, the model loading process will begin, which may take some time. Once loaded, the model will be placed at the marker's location in AR. Users can interact with the model by moving and rotating it in space using gestures.
 
-## Лицензия
-БуквARик распространяется по лицензии MIT. Подробную информацию можно найти в файле LICENSE.
+## License
+BukvARik is distributed under the MIT License. For more details, refer to the LICENSE file.
 
-## Авторы
-БуквARик был разработан Тимуром Сайфиевым в 2023 году. Если у вас есть какие-либо вопросы, вы можете связаться со мной по адресу timerbaka@gmail.com.
+## Authors
+BukvARik was developed by Timur Saifiev in 2023. For any questions, feel free to contact me at timerbaka@gmail.com.
